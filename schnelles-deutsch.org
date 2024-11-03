@@ -41,7 +41,6 @@
 
 
 *** Korrekturen
-    #+name: diff-0100
     #+begin_src shell :results raw :eval yes
       DIFF="sd-0100.diff"
       diff -u sd-0100-script.txt sd-0100-meins.txt > ${DIFF}
@@ -51,9 +50,4 @@
     #+RESULTS: diff-0100
     [[file:sd-0100.diff]]
 
-
-    #+begin_src elisp :var link=diff-0100
-      (org-open-link-from-string link)
-    #+end_src
-
-    #+RESULTS:
+    Nach der Auswertung besuch die resultierende Datei mit =C-c C-o=. 
