@@ -1,0 +1,59 @@
+#+PROPERTY: header-args:shell :eval yes :session shell
+#+PROPERTY: header-args:text :eval no
+#+PROPERTY: header-args:elisp :results verbatim :eval yes :session elisp
+#+auto_tangle: true 
+
+* Schnelles deutsch: [[https://youtu.be/y9uMEFhKJ_8?si=xig1ohA3xpR3uQcW][yt]]
+
+  Prefix fur alle Transkription Dateien:
+  #+name: prefix
+  #+begin_src text
+      sd
+  #+end_src
+  
+  
+** Tangle!
+   #+begin_src elisp
+     (org-babel-tangle)
+   #+end_src
+
+   #+RESULTS:
+   : ("sd-0100-script.txt" "sd-0100-meins.txt")
+
+
+** Transkription bis zu 1:00
+   :PROPERTIES:
+   :header-args:elisp: :eval yes
+   :END:
+   [2024-11-03 So 09:48]
+
+   
+*** Meine version
+    #+begin_src text :tangle sd-0100-meins.txt 
+        Hier ist meine version
+    #+end_src
+
+    
+*** Script aus YouTube
+    #+begin_src text :tangle sd-0100-script.txt
+      Hiet ist die script version
+    #+end_src
+
+
+*** Korrekturen
+    #+name: diff-0100
+    #+begin_src shell :results raw :eval yes
+      DIFF="sd-0100.diff"
+      diff -u sd-0100-script.txt sd-0100-meins.txt > ${DIFF}
+      echo "[[file:${DIFF}]]"
+    #+end_src
+
+    #+RESULTS: diff-0100
+    [[file:sd-0100.diff]]
+
+
+    #+begin_src elisp :var link=diff-0100
+      (org-open-link-from-string link)
+    #+end_src
+
+    #+RESULTS:
