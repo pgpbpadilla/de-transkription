@@ -5,38 +5,103 @@
 
 * Schnelles deutsch: [[https://youtu.be/y9uMEFhKJ_8?si=xig1ohA3xpR3uQcW][yt]]
 
-  Prefix fur alle Transkription Dateien:
-  #+name: prefix
-  #+begin_src text
-      sd
-  #+end_src
-  
-  
-** Tangle!
-   #+begin_src elisp
-     (org-babel-tangle)
-   #+end_src
+  How to use:
 
-   #+RESULTS:
-   : ("sd-0100-script.txt" "sd-0100-meins.txt")
+  1. Narrow to a specific Org subtree, e.g.
+     [[id:CAE5FFC6-354B-4AE1-ACAA-F42F213D3DBD][Transkription bis zu 1:00]]
 
+  2. Evaluate all code blocks:
+     - will generate text files with teh corresponding transcriptions
+     - will open an =ediff= session using my own transcript vs the
+       original one
 
+  3. Review your mistakes
+
+     
 ** Transkription bis zu 1:00
    :PROPERTIES:
    :header-args:elisp: :eval yes
+   :ID:       CAE5FFC6-354B-4AE1-ACAA-F42F213D3DBD
    :END:
    [2024-11-03 So 09:48]
 
    
+*** Tangle all files!
+    #+begin_src elisp
+      (org-babel-tangle)
+    #+end_src
+
+    #+RESULTS:
+    : ("sd-0100-script.txt" "sd-0100-meins.txt")
+
+
 *** Meine version
     #+begin_src text :tangle sd-0100-meins.txt 
-        Hier ist meine version
+      Habt ihr euch schon mal gedacht, Meine Götte die Deutsche sprechen
+      immer so schnell sprich doch bitte einfach mal langsamer.
+
+      Und vor allem, wie soll ich jemal so Sprechen können, in meine
+      Muttersprache Spreche ich doch auch nicht So schnell.
+
+      Dazu sage ich euch gleich was, Bleibst also darein, wenn euch das
+      interessiert.
+
+      Hallo liebe YouTube Deutshlerner und Willkommen euch beim Deutsch mit
+      Benjamin.
+
+      Für einzelt kann dass tatsächlich bei der Geschwindigkeit liegen, ja,
+      es gibt doch mal Leute die richtig schnell sprechen, aber
+      normalerweise sprechen wir als Deutschemuttersprachler Gar nicht so
+      schnell wie ihr vielleicht denkt, oder schneller als die Sprecher
+      anderer Sprachen.
+
+      Es kommt euch nur so schnell vor, weil, wie verbinden die Wörter
+      einfach oft miteinander statt jedes einzelne Wort getrennt vom
+      nächsten Wort zusagen.
+
+      Das für dazu manchmal, dass ein Satz so klingt als wäre es ein
+      einziges ehelend langes Wort, ja, weil oft lassen wir der Laute weg,
+      Manchmal lassen wir sogar ganze Silben oder sogar ganze Wörter weg.
+
+      Manchmal sprechen wir ein
     #+end_src
 
     
-*** Script aus YouTube
+*** Originalskript
+
+    To help format the original script from youtube you can make use
+    of a couple of helper functions in [[file:transkription.el]]
+    
     #+begin_src text :tangle sd-0100-script.txt
-      Hiet ist die script version
+      Habt ihr euch schon mal gedacht: „Meine Güte. Die Deutschen sprechen
+      immer so schnell. Sprecht doch bitte einfach mal langsamer.
+
+      “ Und vor allem: „wie soll ich jemals so sprechen können? In meiner
+      Muttersprache sprechen wir doch auch nicht so schnell.
+
+      “ Dazu sage ich euch gleich was.
+      Bleibt also dran, wenn euch das interessiert.
+
+
+      Hallo liebe YouTube-Deutschlerner und willkommen bei Deutsch mit
+      Benjamin.
+
+      Vereinzelt kann das tatsächlich an der Geschwindigkeit liegen.
+
+      Ja, es gibt nun mal Leute, die wirklich richtig schnell sprechen.
+
+      Aber normalerweise sprechen wir als deutsche Muttersprachler gar nicht
+      so schnell, wie ihr vielleicht denkt oder schneller als die Sprecher
+      anderer Sprachen.
+
+      Es kommt euch nur so schnell vor, weil wir verbinden die Wörter
+      einfach oft miteinander, statt jedes einzelne Wort getrennt vom
+      nächsten Wort zu sagen.
+
+      Das führt dazu, dass ein Satz manchmal so klingt, als wäre das ein
+      einziges ellenlanges Wort, ja, weil oft lassen wir Laute weg, manchmal
+      lassen wir sogar ganze Silben oder sogar ganze Wörter weg, manchmal
+      sprechen wir einen
     #+end_src
 
 
@@ -47,7 +112,19 @@
       echo "[[file:${DIFF}]]"
     #+end_src
 
-    #+RESULTS: diff-0100
+    #+RESULTS:
     [[file:sd-0100.diff]]
 
+
     Nach der Auswertung besuch die resultierende Datei mit =C-c C-o=. 
+
+
+    Der folgende Code Block wird die unterschiede mit =ediff= zeigen:
+    
+    #+begin_src elisp
+      (ediff-files "sd-0100-script.txt" "sd-0100-meins.txt")
+    #+end_src
+
+    #+RESULTS:
+    : #<buffer *Ediff Control Panel*>
+    

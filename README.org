@@ -4,3 +4,15 @@
   :END:
 
   Hier gibt's Transkriptionen um meinen Deutsch zu üben.
+
+  Check them out:
+  
+  #+begin_src bash :results verbatim
+     ls *.org
+  #+end_src
+
+  #+RESULTS:
+  : README.org
+  : schnelles-deutsch.org
+
+
